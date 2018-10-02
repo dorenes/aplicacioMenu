@@ -6,12 +6,16 @@
  */
 package components;
 
+import java.util.Scanner;
+
 /**
  *
  * @author fta
  */
 public class Recepta {
-    
+
+    private static final Scanner DADES = new Scanner(System.in);
+
     private String codi;
     private String nom;
     private Aliment[] ingredients;
@@ -33,11 +37,71 @@ public class Recepta {
      - assignada s'ha d'inicialitzar a false, ja que cuan es crea una recepta no està
      assignada a cap menú.
      */
+    public Recepta(String cd, String nm, String elab, String tip, double cal) {
+        codi = cd;
+        nom = nm;
+        elaboracio = elab;
+        tipus = tip;
+        calories = cal;
+    }
 
     /*
      Mètodes accessors    
-     */  
+     */
+    public void setCodi(String cd) {
+        codi = cd;
+    }
+
+    public void setNom(String nm) {
+        nom = nm;
+    }
     
+    public void setIngredients(){
+        Aliment[] ingredients = new Aliment[25]; 
+    }
+    
+    public void setPosicioIngredients(){
+        posicioIngredients = 0;
+    }
+
+    public void setElaboracio(String elab) {
+        elaboracio = elab;
+    }
+
+    public void setTipus(String tip) {
+        tipus = tip;
+    }
+
+    public void setCalories(double cal) {
+        calories = cal;
+    }
+    
+    public void setAssignada(){
+        assignada = false;
+    }
+    
+    public String getCodi() {
+        return codi;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getElaboracio() {
+        return elaboracio;
+    }
+
+    public String getTipus() {
+        return tipus;
+    }
+
+    public double getCalories() {
+        return calories;
+    }
+    
+    
+
     /*
      Paràmetres: cap
      Accions:
@@ -46,7 +110,7 @@ public class Recepta {
      - En el cas del tipus, l'usuari ha d'introduir 1, si es tracta d'un primer plat, 2
      si es tracta d'un segon i P si són unes postres. Heu de comprovar que la dada
      introduida per l'usuari és la correcta (1, 2 o P) si no li mostrarem el missatge
-     "\nLa dada introduida no és vàlida" i tornarem a demanr-li que introdueixi la dada.
+      i tornarem a demanr-li que introdueixi la dada.
      Això ho farem fins que introdueixi la dada correcta.
      - També heu de tenir en compte que l'elaboració, no estarà formada per una única
      paraula i que el nom, tampoc té perquè ser d'una única paraula, per exemple, 
@@ -54,7 +118,40 @@ public class Recepta {
      Retorn: La nova recepta.
      */
     public static Recepta novaRecepta() {
-    
+        String codi = "";
+        String nom = "";
+        String elaboracio = "";
+        String tipus = "";
+        double calories = 0;
+        boolean assignada = false;
+
+        System.out.println("Introdueix les dades per crear la recepta:");
+        System.out.println("Codi: ");
+        codi = DADES.next();
+
+        System.out.println("Nom: ");
+        nom = DADES.nextLine();
+
+        System.out.println("Elaboracio: ");
+        elaboracio = DADES.nextLine();
+
+        System.out.println("Tipus: 1:Primer plat, 2:segon plat, P:postre");
+        while (!tipus.equals("1") || !tipus.equals("2") || !tipus.equals("P")) {
+
+            System.out.println("La dada introduida no és vàlida");
+
+        }
+
+        tipus = DADES.nextLine();
+
+        System.out.println("Calories: ");
+        calories = DADES.nextDouble();
+        
+        assignada = true;
+        
+        Recepta recepta = new Recepta(codi, nom, elaboracio, tipus, calories/*, assignada*/);
+
+        return recepta;
     }
 
     /*
@@ -72,9 +169,17 @@ public class Recepta {
      Retorn: cap
      */
     public void modificarRecepta() {
-    
+
+        
+        
+        
+        
     }
 
+    
+    
+    
+    
     public void mostrarRecepta() {
         System.out.println("\nLes dades de la recepta amb codi " + codi + " són:");
         System.out.println("\nNom:" + nom);
@@ -90,7 +195,7 @@ public class Recepta {
     /*
      INGREDIENT
      */
-    /*
+ /*
      Paràmetres: cap
      Accions:
      - afegeix un nou ingredient al vector d'ingredients d'aquesta recepta (l'objecte actual),
@@ -105,7 +210,7 @@ public class Recepta {
     public void afegirIngredient() {
 
     }
-    
+
     public int seleccionarIngredient(String codi) {
 
         boolean trobat = false;
