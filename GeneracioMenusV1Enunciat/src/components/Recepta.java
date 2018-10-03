@@ -37,6 +37,7 @@ public class Recepta {
      - assignada s'ha d'inicialitzar a false, ja que cuan es crea una recepta no està
      assignada a cap menú.
      */
+    
     public Recepta(String cd, String nm, String elab, String tip, double cal) {
         codi = cd;
         nom = nm;
@@ -57,7 +58,7 @@ public class Recepta {
     }
     
     public void setIngredients(){
-        Aliment[] ingredients = new Aliment[25]; 
+         ingredients = new Aliment[25]; 
     }
     
     public void setPosicioIngredients(){
@@ -107,11 +108,13 @@ public class Recepta {
      Accions:
      - Demanar a l'usuari les dades per consola per crear una nova recepta. Les dades
      a demanar són les que necessita el constructor.
+    
      - En el cas del tipus, l'usuari ha d'introduir 1, si es tracta d'un primer plat, 2
      si es tracta d'un segon i P si són unes postres. Heu de comprovar que la dada
      introduida per l'usuari és la correcta (1, 2 o P) si no li mostrarem el missatge
-      i tornarem a demanr-li que introdueixi la dada.
+      i tornarem a demanar-li que introdueixi la dada.
      Això ho farem fins que introdueixi la dada correcta.
+    
      - També heu de tenir en compte que l'elaboració, no estarà formada per una única
      paraula i que el nom, tampoc té perquè ser d'una única paraula, per exemple, 
      Francesc Xavier, o bé, matí i tarda.
@@ -123,7 +126,6 @@ public class Recepta {
         String elaboracio = "";
         String tipus = "";
         double calories = 0;
-        boolean assignada = false;
 
         System.out.println("Introdueix les dades per crear la recepta:");
         System.out.println("Codi: ");
@@ -136,20 +138,20 @@ public class Recepta {
         elaboracio = DADES.nextLine();
 
         System.out.println("Tipus: 1:Primer plat, 2:segon plat, P:postre");
+        tipus = DADES.nextLine();
+        
         while (!tipus.equals("1") || !tipus.equals("2") || !tipus.equals("P")) {
 
             System.out.println("La dada introduida no és vàlida");
-
+            
+            System.out.println("Torna a introduir la dada.");
+            tipus = DADES.nextLine();
         }
-
-        tipus = DADES.nextLine();
 
         System.out.println("Calories: ");
         calories = DADES.nextDouble();
         
-        assignada = true;
-        
-        Recepta recepta = new Recepta(codi, nom, elaboracio, tipus, calories/*, assignada*/);
+        Recepta recepta = new Recepta(codi, nom, elaboracio, tipus, calories);
 
         return recepta;
     }
@@ -160,16 +162,29 @@ public class Recepta {
      - Demanar a l'usuari que introdueixi les noves dades de l'objecte actual
      i modificar els atributs corresponents d'aquest objecte. En aquest cas no
      es pot modificar l'atribut ingredients, ni l'atribut assignada.
+    
      - En el cas del tipus, l'usuari ha d'introduir 1, si es tracta d'un primer plat, 2
      si es tracta d'un segon i P si són unes postres. Heu de comprovar que la dada
      introduida per l'usuari és la correcta (1, 2 o P) si no tornarem a demanr-li 
      que introdueixi la dada. Això ho farem fins que introdueixi la dada correcta.
-     - Li heu de mostrar a l'usuari el valor actual dels atributs de l'objecte
+     
+    - Li heu de mostrar a l'usuari el valor actual dels atributs de l'objecte
      actual, abans de modificar-los
      Retorn: cap
      */
     public void modificarRecepta() {
-
+        
+        
+        System.out.println("introdueix les noves dades de l'objecte actual:");
+        
+        System.out.println("codi:");
+        
+        
+        System.out.println("Nom:");
+        
+        
+        
+        
         
         
         
