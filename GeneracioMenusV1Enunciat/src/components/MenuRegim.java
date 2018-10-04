@@ -7,34 +7,79 @@ package components;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  *
  * @author fta
  */
 public class MenuRegim {
-    
-    private int codi;
+
+    private static final Scanner DADES = new Scanner(System.in);
+
+    private int codi = properCodi;
     private static int properCodi = 1; //El proper codi a assignar
-    private Date data; //data de creació del menú
-    private Recepta[] plats;
+    private Date data = new Date(); //data de creació del menú
+    private Recepta[] plats = new Recepta[3];
     private double calories;
 
     /*
      CONSTRUCTOR
      Paràmetres: el valor a assignar a calories
+    
      Accions:
-     - Assignar a calories el valor passats com a paràmetre.
+     - Assignar a calories el valor passat com a paràmetre.
      - plats s'ha d'inicialtizar buit i amb una capacitat per 3 plats.
      - Assignar a l'atribut codi el valor de l'atribut properCodi i actualitzar
      properCodi amb el següent codi a assignar.
      - data s'ha d'incialitzar amb la data actual del sistema.     
      */
-
+    public MenuRegim(double cal) {
+        calories = cal;
+    }
 
     /*
      Mètodes accessors    
      */
+    public void setCodi(int cod) {
+        codi = cod;
+    }
+
+    public void setproperCodi() {
+        properCodi++;
+    }
+
+    public void setData(Date da) {
+        data = da;
+    }
+
+    public void setPlats(Recepta[] re) {
+        plats = re;
+    }
+
+    public void setCalories(double cal) {
+        calories = cal;
+    }
+
+    public int getCodi() {
+        return codi;
+    }
+
+    public int getproperCodi() {
+        return properCodi;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public Recepta[] getPlats() {
+        return plats;
+    }
+
+    public double getCalories() {
+        return calories;
+    }
 
     /*
      Paràmetres: cap
@@ -44,19 +89,29 @@ public class MenuRegim {
      Retorn: El nou Menú.
      */
     public static MenuRegim nouMenuRegim() {
+        double calories = 0;
 
+        System.out.println("Introdueix les Calories del menu: ");
+        calories = DADES.nextDouble();
+
+        MenuRegim menr = new MenuRegim(calories);
+
+        return menr;
     }
 
     /*
      Paràmetres: cap
      Accions:
-     - Demanar a l'usuari que introdueixi les noves caories de l'objecte actual
+     - Demanar a l'usuari que introdueixi les noves calories de l'objecte actual
      i modificar les calories corresponents d'aquest objecte.
      - Li heu de mostrar a l'usuari el valor actual de les calories de l'objecte
      actual, abans de modificar-les
      Retorn: cap
      */
     public void modificarMenuRegim() {
+        System.out.println("Introdueix les noves calories per a la recepta actual: ");
+        System.out.println("Calories: ");
+        calories = DADES.nextDouble();
 
     }
 
@@ -109,7 +164,20 @@ public class MenuRegim {
      - L'estat de la recepta afegida a de canviar a verdader.
      Retorn: cap
      */
-    public void afegirPlat() {
+    public void afegirPlat(Recepta rec) {
+        boolean asign = false;
+        if (rec.getTipus().equals("1") == true) {
+            plats[0] = rec;
+            asign = true;
 
+        } else if (rec.getTipus().equals("2") == true) {
+            plats[1] = rec;
+            asign = true;
+        } else if (rec.getTipus().equals("P") == true) {
+            plats[2] = rec;
+            asign = true;
+        }
+
+        rec.setAssignada(asign);
     }
 }

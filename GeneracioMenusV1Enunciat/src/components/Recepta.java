@@ -88,6 +88,14 @@ public class Recepta {
         return nom;
     }
 
+    public Aliment[] getIngredients() {
+        return ingredients;
+    }
+
+    public int getposicioIngredients() {
+        return posicioIngredients;
+    }
+
     public String getElaboracio() {
         return elaboracio;
     }
@@ -98,6 +106,10 @@ public class Recepta {
 
     public double getCalories() {
         return calories;
+    }
+
+    public boolean getAssignada() {
+        return assignada;
     }
 
     /*
@@ -225,7 +237,7 @@ public class Recepta {
      Accions:
     
      - afegeix un nou ingredient al vector d'ingredients d'aquesta recepta (l'objecte actual),
-     si aquest encara no s'ha afegit, fent servir el mètode de la classe Ingredients pertinent,    
+     si aquest encara no s'ha afegit, fent servir el mètode de la classe Ingredients/Aliments pertinent,    
      i actualitza la posició del vector d'ingredients.
     
      - heu de fer servir el mètode escaient d'aquesta classe per comprovar si l'ingredient
