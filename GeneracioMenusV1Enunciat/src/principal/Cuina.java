@@ -113,7 +113,13 @@ public class Cuina {
         menusRegim=menRe;
     }
     public MenuRegim[] getMenuRegim(){
-        
+        return menusRegim;
+    }
+    public void setPosicioMenusRegim(int posMeRe){
+        posicioMenusRegim=posMeRe;
+    }
+    public int getPosicioMenusRegim(){
+        return posicioMenusRegim;
     }
     /*
      Paràmetres: cap
