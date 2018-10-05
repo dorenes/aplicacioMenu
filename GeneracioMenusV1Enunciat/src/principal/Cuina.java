@@ -9,24 +9,29 @@ import components.Aliment;
 import components.MenuOrdinari;
 import components.MenuRegim;
 import components.Recepta;
+import java.util.Scanner;
 
 /**
  *
  * @author fta
  */
+
+
 public class Cuina {
 
+    private static final Scanner DADES = new Scanner(System.in);
+    
     private int codi;
     private static int properCodi = 1; //El proper codi a assignar
     private String adreca;
     private Recepta[] receptes;
-    private int posicioReceptes=0; //Possició actual buida del vector receptes
+    private int posicioReceptes; //Possició actual buida del vector receptes
     private Aliment[] aliments;
-    private int posicioAliments=0; //Possició actual buida del vector aliments
+    private int posicioAliments; //Possició actual buida del vector aliments
     private MenuOrdinari[] menusOrdinaris;
-    private int posicioMenusOrdinaris=0; //Possició actual buida del vector menusOrdinaris
+    private int posicioMenusOrdinaris; //Possició actual buida del vector menusOrdinaris
     private MenuRegim[] menusRegim;
-    private int posicioMenusRegim=0; //Possició actual buida del vector menusRegim
+    private int posicioMenusRegim; //Possició actual buida del vector menusRegim
 
     /*
      CONSTRUCTOR
@@ -42,85 +47,111 @@ public class Cuina {
      - posicioReceptes, posicioAliments, posicioMenusOrdinaris i posicioMenusRegim
      s'han d'inicialtizar a 0, ja que és la primera posició del vector aliments.
      */
-    public Cuina(){
-        codi=properCodi;
+    public Cuina() {
+        codi = properCodi;
         properCodi++;
-        adreca="";
-        receptes = new Recepta[posicioReceptes];
-        aliments = new Aliment[posicioAliments];
-        menusOrdinaris = new MenuOrdinari[posicioMenusOrdinaris];
-        menusRegim = new MenuRegim[posicioMenusRegim];
+        adreca = "";
+        receptes = new Recepta[100];
+        posicioReceptes=0;
+        aliments = new Aliment[150];
+        posicioAliments=0;
+        menusOrdinaris = new MenuOrdinari[50];
+        posicioMenusOrdinaris=0;
+        menusRegim = new MenuRegim[50];
+        posicioMenusRegim=0;
     }
 
     /*
      Mètodes accessors    
      */
-    public void setCodi(int cCodi){
-        codi=cCodi;
+    public void setCodi(int cCodi) {
+        codi = cCodi;
     }
-    public int getCodi(){
+
+    public int getCodi() {
         return codi;
     }
-    public void setProperCodi(int cProperCodi){
-        properCodi=cProperCodi;
+
+    public void setProperCodi(int cProperCodi) {
+        properCodi = cProperCodi;
     }
-    public int getProperCodi(){
+
+    public int getProperCodi() {
         return properCodi;
     }
-    public void setAdreca(String cAdreca){
-        adreca=cAdreca;
+
+    public void setAdreca(String cAdreca) {
+        adreca = cAdreca;
     }
-    public String getAdreca(){
+
+    public String getAdreca() {
         return adreca;
     }
-    public void setRecepta(Recepta[] recept){
-        receptes=recept;
+
+    public void setRecepta(Recepta[] recept) {
+        receptes = recept;
     }
-    public Recepta[] getRecepta(){
+
+    public Recepta[] getRecepta() {
         return receptes;
     }
-    public void setPosicioReceptes(int cPosicioReceptes){
-        posicioReceptes=cPosicioReceptes;
+
+    public void setPosicioReceptes(int cPosicioReceptes) {
+        posicioReceptes = cPosicioReceptes;
     }
-    public int getPosicioReceptes(){
+
+    public int getPosicioReceptes() {
         return posicioReceptes;
     }
-    public void setAliment(Aliment[] alim){
-        aliments=alim;
+
+    public void setAliment(Aliment[] alim) {
+        aliments = alim;
     }
-    public Aliment[] getAliment(){
+
+    public Aliment[] getAliment() {
         return aliments;
     }
-    public void setPosicioAliments(int cPosicioAliments){
-        posicioAliments=cPosicioAliments;
+
+    public void setPosicioAliments(int cPosicioAliments) {
+        posicioAliments = cPosicioAliments;
     }
-    public int getPosicioAliments(){
+
+    public int getPosicioAliments() {
         return posicioAliments;
     }
-    public void setMenuOrdinari(MenuOrdinari[] menOr){
-        menusOrdinaris=menOr;
+
+    public void setMenuOrdinari(MenuOrdinari[] menOr) {
+        menusOrdinaris = menOr;
     }
-    public MenuOrdinari[] getMenuOrdinari(){
+
+    public MenuOrdinari[] getMenuOrdinari() {
         return menusOrdinaris;
     }
-    public void setPosicioMenusOrdinaris(int posMenOr){
-        posicioMenusOrdinaris=posMenOr;
+
+    public void setPosicioMenusOrdinaris(int posMenOr) {
+        posicioMenusOrdinaris = posMenOr;
     }
-    public int getPosicioMenusOrdinaris(){
+
+    public int getPosicioMenusOrdinaris() {
         return posicioMenusOrdinaris;
     }
-    public void setMenuRegim(MenuRegim[] menRe){
-        menusRegim=menRe;
+
+    public void setMenuRegim(MenuRegim[] menRe) {
+        menusRegim = menRe;
     }
-    public MenuRegim[] getMenuRegim(){
+
+    public MenuRegim[] getMenuRegim() {
         return menusRegim;
     }
-    public void setPosicioMenusRegim(int posMeRe){
-        posicioMenusRegim=posMeRe;
+
+    public void setPosicioMenusRegim(int posMeRe) {
+        posicioMenusRegim = posMeRe;
     }
-    public int getPosicioMenusRegim(){
+
+    public int getPosicioMenusRegim() {
         return posicioMenusRegim;
     }
+
     /*
      Paràmetres: cap
      Accions:
@@ -131,7 +162,11 @@ public class Cuina {
      Retorn: La nova cuina creada.
      */
     public static Cuina novaCuina() {
-
+        Cuina novaCuina = new Cuina();
+        System.out.println("Adreca:");
+        novaCuina.adreca=DADES.nextLine();
+        
+        
     }
 
     /*
@@ -166,7 +201,9 @@ public class Cuina {
      Retorn: cap
      */
     public void afegirRecepta() {
-   
+
+        receptes[posicioReceptes]=Recepta.novaRecepta();
+        posicioReceptes++;
     }
 
     public int seleccionarRecepta() {
@@ -236,7 +273,7 @@ public class Cuina {
      Retorn: cap
      */
     public void afegirMenuOrdinari() {
- 
+
     }
 
     public int seleccionarMenuOrdinari() {
@@ -299,7 +336,7 @@ public class Cuina {
      Retorn: cap
      */
     public void afegeixIngredientRecepta() {
-    
+
     }
 
     /*
@@ -317,7 +354,7 @@ public class Cuina {
      Retorn: cap
      */
     public void afegeixPlatsMenuOrdinari() {
-        
+
     }
 
     /*
@@ -340,7 +377,7 @@ public class Cuina {
      Retorn: cap
      */
     public void afegeixPlatsMenuRegim() {
-       
+
     }
-    
+
 }
