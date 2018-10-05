@@ -20,13 +20,13 @@ public class Cuina {
     private static int properCodi = 1; //El proper codi a assignar
     private String adreca;
     private Recepta[] receptes;
-    private int posicioReceptes; //Possició actual buida del vector receptes
+    private int posicioReceptes=0; //Possició actual buida del vector receptes
     private Aliment[] aliments;
-    private int posicioAliments; //Possició actual buida del vector aliments
+    private int posicioAliments=0; //Possició actual buida del vector aliments
     private MenuOrdinari[] menusOrdinaris;
-    private int posicioMenusOrdinaris; //Possició actual buida del vector menusOrdinaris
+    private int posicioMenusOrdinaris=0; //Possició actual buida del vector menusOrdinaris
     private MenuRegim[] menusRegim;
-    private int posicioMenusRegim; //Possició actual buida del vector menusRegim
+    private int posicioMenusRegim=0; //Possició actual buida del vector menusRegim
 
     /*
      CONSTRUCTOR
@@ -42,11 +42,79 @@ public class Cuina {
      - posicioReceptes, posicioAliments, posicioMenusOrdinaris i posicioMenusRegim
      s'han d'inicialtizar a 0, ja que és la primera posició del vector aliments.
      */
+    public Cuina(){
+        codi=properCodi;
+        properCodi++;
+        adreca="";
+        receptes = new Recepta[posicioReceptes];
+        aliments = new Aliment[posicioAliments];
+        menusOrdinaris = new MenuOrdinari[posicioMenusOrdinaris];
+        menusRegim = new MenuRegim[posicioMenusRegim];
+    }
 
     /*
      Mètodes accessors    
      */
-    
+    public void setCodi(int cCodi){
+        codi=cCodi;
+    }
+    public int getCodi(){
+        return codi;
+    }
+    public void setProperCodi(int cProperCodi){
+        properCodi=cProperCodi;
+    }
+    public int getProperCodi(){
+        return properCodi;
+    }
+    public void setAdreca(String cAdreca){
+        adreca=cAdreca;
+    }
+    public String getAdreca(){
+        return adreca;
+    }
+    public void setRecepta(Recepta[] recept){
+        receptes=recept;
+    }
+    public Recepta[] getRecepta(){
+        return receptes;
+    }
+    public void setPosicioReceptes(int cPosicioReceptes){
+        posicioReceptes=cPosicioReceptes;
+    }
+    public int getPosicioReceptes(){
+        return posicioReceptes;
+    }
+    public void setAliment(Aliment[] alim){
+        aliments=alim;
+    }
+    public Aliment[] getAliment(){
+        return aliments;
+    }
+    public void setPosicioAliments(int cPosicioAliments){
+        posicioAliments=cPosicioAliments;
+    }
+    public int getPosicioAliments(){
+        return posicioAliments;
+    }
+    public void setMenuOrdinari(MenuOrdinari[] menOr){
+        menusOrdinaris=menOr;
+    }
+    public MenuOrdinari[] getMenuOrdinari(){
+        return menusOrdinaris;
+    }
+    public void setPosicioMenusOrdinaris(int posMenOr){
+        posicioMenusOrdinaris=posMenOr;
+    }
+    public int getPosicioMenusOrdinaris(){
+        return posicioMenusOrdinaris;
+    }
+    public void setMenuRegim(MenuRegim[] menRe){
+        menusRegim=menRe;
+    }
+    public MenuRegim[] getMenuRegim(){
+        
+    }
     /*
      Paràmetres: cap
      Accions:
