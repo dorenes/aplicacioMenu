@@ -4,12 +4,16 @@
  */
 package principal;
 
+import java.util.Scanner;
+
 /**
  *
  * @author fta
  */
 public class Aplicacio {
-    
+
+    private static final Scanner DADES = new Scanner(System.in);
+
     private static Cuina[] cuines = new Cuina[4];//Cuines dels estudiants
     private static int posicioCuines = 0; //La propera posició buida del vector cuines
     private static Cuina cuinaActual = null; //Cuina seleccionada    
@@ -17,12 +21,12 @@ public class Aplicacio {
     public static void main(String[] args) {
 
         menuPrincipal();
-        
+
     }
 
     private static void menuPrincipal() {
         int opcio = 0;
-        
+
         do {
             System.out.println("\nSelecciona una opció");
             System.out.println("\n0. Sortir");
@@ -77,10 +81,10 @@ public class Aplicacio {
 
     public static void menuCuina() {
         int opcio = 0;
-        
+
         do {
             int pos = -1;
-            
+
             System.out.println("\nSelecciona una opció");
             System.out.println("\n0. Sortir");
             System.out.println("\n1. Alta");
@@ -137,7 +141,8 @@ public class Aplicacio {
      penseu que Cuina sap fer-ho
      Opció 4. Llistar receptes-->Imprimeix les dades de les receptes de la cuina actual
         
-     A més, heu de fer un bucle per tornar a mostrar el menú sempre que no es premi l'opció 0 de sortida
+     A més, heu de fer un bucle per tornar a mostrar el menú sempre que no es premi l'opció 0 de sortida.
+    
      Recomanacions:
      - estructura de control switch case per bifurcar les opcions
      - si no s'ha introduït cap opció de les de la llista, s'ha de mostrar el missatge
@@ -148,7 +153,42 @@ public class Aplicacio {
      mitjançant les excepcions que veurem en la segúent unitat.
      */
     public static void menuReceptes() {
-       
+
+        int opcio = 0;
+        /*
+        while (opcio != 0) {
+            menuReceptes();
+        }
+         */
+        System.out.println("Escull una opcio: ");
+        while (opcio != 0) {
+            System.out.println("0. Sortir.");
+            System.out.println("1. Alta.");
+            System.out.println("2. Modificar.");
+            System.out.println("3. Afegir Ingredient.");
+            System.out.println("4. Llistar receptes.");
+
+            switch (opcio) {
+                case 0:
+                    menuPrincipal();
+                    break;
+                case 1:
+                    Cuina.novaCuina().afegirRecepta();
+                    break;
+                case 2:
+                    Cuina.novaCuina().modificarCuina();
+                    break;
+                case 3:
+                    Cuina.novaCuina().afegirAliment();
+                    break;
+                case 4:
+                    Cuina.novaCuina().getRecepta();
+                    break;
+                default:
+                    System.out.println("S'ha de seleccionar una opció correcta del menú.");
+                    break;
+            }
+        }
     }
 
     /*
@@ -172,7 +212,7 @@ public class Aplicacio {
      mitjançant les excepcions que veurem en la segúent unitat.
      */
     public static void menuAliments() {
-       
+
     }
 
     /*
@@ -197,7 +237,7 @@ public class Aplicacio {
      mitjançant les excepcions que veurem en la segúent unitat.
      */
     public static void menuMenusOrdinaris() {
-       
+
     }
 
     /*
@@ -221,13 +261,13 @@ public class Aplicacio {
      mitjançant les excepcions que veurem en la segúent unitat.
      */
     public static void menuMenusRegim() {
-        
+
     }
 
     public static Integer seleccionarCuina() {
-        
+
         System.out.println("\nCodi de la cuina?:");
-        
+
         int codi = DADES.nextInt();
         boolean trobat = false;
         int pos = -1;
