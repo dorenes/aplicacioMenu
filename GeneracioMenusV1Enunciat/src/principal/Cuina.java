@@ -15,12 +15,10 @@ import java.util.Scanner;
  *
  * @author fta
  */
-
-
 public class Cuina {
 
     private static final Scanner DADES = new Scanner(System.in);
-    
+
     private int codi;
     private static int properCodi = 1; //El proper codi a assignar
     private String adreca;
@@ -52,13 +50,13 @@ public class Cuina {
         properCodi++;
         adreca = "";
         receptes = new Recepta[100];
-        posicioReceptes=0;
+        posicioReceptes = 0;
         aliments = new Aliment[150];
-        posicioAliments=0;
+        posicioAliments = 0;
         menusOrdinaris = new MenuOrdinari[50];
-        posicioMenusOrdinaris=0;
+        posicioMenusOrdinaris = 0;
         menusRegim = new MenuRegim[50];
-        posicioMenusRegim=0;
+        posicioMenusRegim = 0;
     }
 
     /*
@@ -164,9 +162,8 @@ public class Cuina {
     public static Cuina novaCuina() {
         Cuina novaCuina = new Cuina();
         System.out.println("Adreca:");
-        novaCuina.adreca=DADES.nextLine();
-        
-        
+        novaCuina.adreca = DADES.nextLine();
+        return novaCuina;
     }
 
     /*
@@ -181,7 +178,9 @@ public class Cuina {
      Retorn: cap
      */
     public void modificarCuina() {
-
+        mostrarCuina();
+        System.out.println("Introdueix l'adreça nova:");
+        adreca = DADES.nextLine();
     }
 
     public void mostrarCuina() {
@@ -202,7 +201,7 @@ public class Cuina {
      */
     public void afegirRecepta() {
 
-        receptes[posicioReceptes]=Recepta.novaRecepta();
+        receptes[posicioReceptes] = Recepta.novaRecepta();
         posicioReceptes++;
     }
 
@@ -238,6 +237,17 @@ public class Cuina {
      Retorn: cap
      */
     public void afegirAliment() {
+        
+        Aliment alim = Aliment.nouAliment();
+        if (aliments[posicioAliments] == null) {
+            if (seleccionarAliment(alim.getCodi()) == -1) {
+                aliments[posicioAliments] = Aliment.nouAliment();
+                posicioAliments++;
+            }else{
+                System.out.println("\nL'aliment ja existeix");
+            }
+
+        }
 
     }
 
@@ -274,6 +284,9 @@ public class Cuina {
      */
     public void afegirMenuOrdinari() {
 
+        menusOrdinaris[posicioMenusOrdinaris] = new MenuOrdinari();
+        posicioMenusOrdinaris++;
+
     }
 
     public int seleccionarMenuOrdinari() {
@@ -304,7 +317,8 @@ public class Cuina {
      Retorn: cap
      */
     public void afegirMenuRegim() {
-
+        menusRegim[posicioMenusRegim] = MenuRegim.nouMenuRegim();
+        posicioMenusRegim++;
     }
 
     public int seleccionarMenuRegim() {
