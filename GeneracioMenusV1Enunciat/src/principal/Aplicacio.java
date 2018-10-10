@@ -216,6 +216,7 @@ public class Aplicacio {
     public static void menuAliments() {
 
         int opcio = 0;
+        int pos;
 
         System.out.println("Escull una opcio: ");
         opcio = DADES.nextInt();
@@ -223,7 +224,7 @@ public class Aplicacio {
             System.out.println("0. Sortir.");
             System.out.println("1. Alta.");
             System.out.println("2. Modificar.");
-            System.out.println("3. Afegir Ingredient.");
+            System.out.println("3. Llistar aliments.");
 
             switch (opcio) {
                 case 0:
@@ -233,10 +234,12 @@ public class Aplicacio {
                     Cuina.novaCuina().afegirAliment();
                     break;
                 case 2:
-                    Cuina.novaCuina(); //Falta trobar el metode.
+                    pos = cuinaActual.seleccionarAliment(null);
+                     cuinaActual.getAliment()[pos].modificarAliment();
                     break;
                 case 3:
-                    Cuina.novaCuina().getAliment(); //Falta trobar el metode.
+                    pos = cuinaActual.seleccionarAliment(null);
+                    cuinaActual.getAliment()[pos].mostrarAliment(); 
                     break;
                 default:
                     System.out.println("S'ha de seleccionar una opció correcta del menú.");
