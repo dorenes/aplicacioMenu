@@ -248,22 +248,34 @@ public class Recepta {
      Retorn: cap
      */
     public void afegirIngredient() {
+        String codi = "";
+        String nom = "";
+        int quantitat = 0;
+
+        System.out.println("Codi aliment:");
+        codi = DADES.next();
+        System.out.println("Nom aliment:");
+        nom = DADES.nextLine();
+        System.out.println("Quantitat:");
+        quantitat = DADES.nextInt();
+
+        Aliment al = new Aliment(codi, nom, quantitat);
+
+        if (seleccionarIngredient(codi) == -1) {
+            ingredients[posicioIngredients] = al;
+            posicioIngredients++;
+        } else {
+            System.out.println("L'ingredient ja existeix");
+        }
 
         /*
-        ingredients=new Aliment[posicioIngredient];
-        posicioIngredients++;
-         */
- /*
-        Aliment ingredient = new Aliment();
-        ingredients[posicioIngredients]=ingredient;
-         */
         if (seleccionarIngredient(codi) == posicioIngredients) {
             System.out.println("L'ingredient ja existeix");
         } else {
             ingredients[posicioIngredients] = Aliment.nouAliment();
             posicioIngredients++;
         }
-
+         */
     }
 
     public int seleccionarIngredient(String codi) {
