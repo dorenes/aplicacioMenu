@@ -17,7 +17,7 @@ public class MenuOrdinari {
     private static final Scanner DADES = new Scanner(System.in);
 
     private static int codi;
-    private static int properCodi = 1; //El proper codi a assignar
+    private static int properCodi = 0; //El proper codi a assignar
     private Date data; //data de creació del menú
     private Recepta[] plats;
 
@@ -114,25 +114,24 @@ public class MenuOrdinari {
      Retorn: cap
      */
     public void afegirPlat(Recepta recep) {
-        boolean afegit = false;
-
+                
         switch (recep.getTipus()) {
             case "1":
                 if (plats[0] == null) {
                     plats[0] = recep;
-                    afegit = true;
+                    recep.setAssignada(true);
                 }
                 break;
             case "2":
                 if (plats[1] == null) {
                     plats[1] = recep;
-                    afegit = true;
+                    recep.setAssignada(true);
                 }
                 break;
             case "P":
                 if (plats[2] == null) {
                     plats[2] = recep;
-                    afegit = true;
+                    recep.setAssignada(true);
                 }
                 break;
         } //fi switch
