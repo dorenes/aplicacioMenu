@@ -157,7 +157,7 @@ public class Aplicacio {
      */
     public static void menuReceptes() {
 
-        int opcio = 0;
+        int opcio = 0, pos;
 
         opcio = DADES.nextInt();
         System.out.println("Escull una opcio: ");
@@ -175,16 +175,19 @@ public class Aplicacio {
                     menuPrincipal();
                     break;
                 case 1:
-                    Cuina.novaCuina().afegirRecepta();
+                    cuinaActual.afegirRecepta();
                     break;
                 case 2:
-                    Cuina.novaCuina().modificarCuina();
+                    pos = cuinaActual.seleccionarRecepta();
+                    cuinaActual.getRecepta()[pos].modificarRecepta();
                     break;
                 case 3:
-                    Cuina.novaCuina().afegirAliment();
+                    pos = cuinaActual.seleccionarRecepta();
+                    cuinaActual.getRecepta()[pos].afegirIngredient();
                     break;
                 case 4:
-                    Cuina.novaCuina().getRecepta(); //Falta trobar el metode (NO SE SI ESTA BE)
+                    pos = cuinaActual.seleccionarRecepta();
+                    cuinaActual.getRecepta()[pos].mostrarRecepta();
                     break;
                 default:
                     System.out.println("S'ha de seleccionar una opció correcta del menú.");
@@ -215,8 +218,7 @@ public class Aplicacio {
      */
     public static void menuAliments() {
 
-        int opcio = 0;
-        int pos;
+        int opcio = 0, pos;
 
         System.out.println("Escull una opcio: ");
         opcio = DADES.nextInt();
@@ -224,7 +226,7 @@ public class Aplicacio {
             System.out.println("0. Sortir.");
             System.out.println("1. Alta.");
             System.out.println("2. Modificar.");
-            System.out.println("3. Llistar aliments.");
+            System.out.println("3. Afegir Ingredient.");
 
             switch (opcio) {
                 case 0:
@@ -235,11 +237,11 @@ public class Aplicacio {
                     break;
                 case 2:
                     pos = cuinaActual.seleccionarAliment(null);
-                     cuinaActual.getAliment()[pos].modificarAliment();
+                    cuinaActual.getAliment()[pos].modificarAliment();
                     break;
                 case 3:
                     pos = cuinaActual.seleccionarAliment(null);
-                    cuinaActual.getAliment()[pos].mostrarAliment(); 
+                    cuinaActual.getAliment()[pos].mostrarAliment();
                     break;
                 default:
                     System.out.println("S'ha de seleccionar una opció correcta del menú.");
@@ -272,7 +274,7 @@ public class Aplicacio {
      */
     public static void menuMenusOrdinaris() {
 
-        int opcio = 0;
+        int opcio = 0, pos;
 
         System.out.println("Escull una opcio: ");
         opcio = DADES.nextInt();
@@ -288,10 +290,11 @@ public class Aplicacio {
                     menuPrincipal();
                     break;
                 case 1:
-                    Cuina.novaCuina().afegirMenuOrdinari();
+                    cuinaActual.afegirMenuOrdinari();
                     break;
                 case 2:
-                    Cuina.novaCuina(); //Falta trobar el metode.
+                    pos = cuinaActual.seleccionarMenuOrdinari();
+                    cuinaActual.getMenuOrdinari()[pos].mostrarMenu();
                     break;
                 default:
                     System.out.println("S'ha de seleccionar una opció correcta del menú.");
@@ -307,7 +310,7 @@ public class Aplicacio {
      
      Opció 0. Sortir -->         Sortim del menú. 
      Opció 1. Alta -->           Crea un nou menú de règim en la cuina actual i li afegeix els
-     plats necessaris. Penseu que Cuina sap crear menús ordinaris i afegir els seus plats. Abans
+     plats necessaris. Penseu que Cuina sap crear menús de regim i afegir els seus plats. Abans
      de crear-lo, li demanarà a l'usuari les calories màximes del menú de règim.
      Opció 2. Llistar menús de règim-->Imprimeix les dades dels menús ordinaris de la cuina actual
         
@@ -323,7 +326,7 @@ public class Aplicacio {
      */
     public static void menuMenusRegim() {
 
-        int opcio = 0;
+        int opcio = 0, pos;
 
         System.out.println("Escull una opcio: ");
         opcio = DADES.nextInt();
@@ -339,10 +342,11 @@ public class Aplicacio {
                     menuPrincipal();
                     break;
                 case 1:
-                    Cuina.novaCuina().afegirMenuRegim();
+                    cuinaActual.afegirMenuRegim();
                     break;
                 case 2:
-                    Cuina.novaCuina(); //Falta trobar el metode.
+                    pos = cuinaActual.seleccionarMenuRegim();
+                    cuinaActual.getMenuRegim()[pos].mostrarMenu();
                     break;
                 default:
                     System.out.println("S'ha de seleccionar una opció correcta del menú.");
