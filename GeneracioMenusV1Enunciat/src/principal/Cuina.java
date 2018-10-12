@@ -237,13 +237,13 @@ public class Cuina {
      Retorn: cap
      */
     public void afegirAliment() {
-        
+
         Aliment alim = Aliment.nouAliment();
         if (aliments[posicioAliments] == null) {
             if (seleccionarAliment(alim.getCodi()) == -1) {
                 aliments[posicioAliments] = Aliment.nouAliment();
                 posicioAliments++;
-            }else{
+            } else {
                 System.out.println("\nL'aliment ja existeix");
             }
 
@@ -350,6 +350,13 @@ public class Cuina {
      Retorn: cap
      */
     public void afegeixIngredientRecepta() {
+        int pos = seleccionarRecepta();
+
+        if (pos == -1) {
+            System.out.println("\nNo existeix aquesta recepta");
+        } else {
+            receptes[pos].afegirIngredient();
+        }
 
     }
 
@@ -360,16 +367,91 @@ public class Cuina {
      Accions:
      - Afegirem els plats (receptes) segons els valors del vector passat per paràmetre,
      a l'últim menú afegit al vector de menús ordinaris.
-     - Heu d'afegir els plats tenint en compte que els seus ingredients i quantitas
+     - Heu d'afegir els plats tenint en compte que els seus ingredients i quantitats
      dels mateixos, es troben actualment en la cuina (vector d'ingredients) i que no
      està assignat a un altre menú.
      - Per afegir els plats heu de fer servir el mètode pertinent de la classe MenuOrdinari.    
      - Un cop afegits els plats al menú, l'aplicació finalitzarà.
      Retorn: cap
      */
-    public void afegeixPlatsMenuOrdinari() {
+ /*
+    =======================
+    
+     */
+    public void afegeixPlatsMenuOrdinari(boolean plat[]) {
+
+        if (plat[0] == true) {
+            boolean receptaAfegida = false;
+
+            for (int i = 0; i < posicioReceptes && receptes[i].getTipus().equals("1") && receptes[i].getAssignada() == false && receptaAfegida == false; i++) {
+
+                boolean alimentValid = true;
+
+                for (int j = 0; j < posicioAliments && alimentValid == true; j++) {
+                    int pos = seleccionarAliment(receptes[i].getIngredients()[j].getCodi());
+
+                    if (pos > -1) {
+                        if (aliments[j].getQuantitat() < receptes[i].getIngredients()[j].getQuantitat()) {
+                            alimentValid = false;
+                        }
+
+                    }
+                }
+                if (alimentValid == true) {
+                    menusOrdinaris[posicioMenusOrdinaris - 1].afegirPlat(receptes[i]);
+                    receptaAfegida = true;
+                }
+            }
+        } // if de plat 0
+        if (plat[1] == true) {
+            boolean receptaAfegida = false;
+
+            for (int i = 0; i < posicioReceptes && receptes[i].getTipus().equals("2") && receptes[i].getAssignada() == false && receptaAfegida == false; i++) {
+
+                boolean alimentValid = true;
+
+                for (int j = 0; j < posicioAliments && alimentValid == true; j++) {
+                    int pos = seleccionarAliment(receptes[i].getIngredients()[j].getCodi());
+
+                    if (pos > -1) {
+                        if (aliments[j].getQuantitat() < receptes[i].getIngredients()[j].getQuantitat()) {
+                            alimentValid = false;
+                        }
+
+                    }
+                }
+                if (alimentValid == true) {
+                    menusOrdinaris[posicioMenusOrdinaris - 1].afegirPlat(receptes[i]);
+                    receptaAfegida = true;
+                }
+            }
+        } // if de plat 1
+        if (plat[2] == true) {
+            boolean receptaAfegida = false;
+
+            for (int i = 0; i < posicioReceptes && receptes[i].getTipus().equals("P") && receptes[i].getAssignada() == false && receptaAfegida == false; i++) {
+
+                boolean alimentValid = true;
+
+                for (int j = 0; j < posicioAliments && alimentValid == true; j++) {
+                    int pos = seleccionarAliment(receptes[i].getIngredients()[j].getCodi());
+
+                    if (pos > -1) {
+                        if (aliments[j].getQuantitat() < receptes[i].getIngredients()[j].getQuantitat()) {
+                            alimentValid = false;
+                        }
+
+                    }
+                }
+                if (alimentValid == true) {
+                    menusOrdinaris[posicioMenusOrdinaris - 1].afegirPlat(receptes[i]);
+                    receptaAfegida = true;
+                }
+            }
+        } // if de Postres
 
     }
+
 
     /*
      Paràmetres: calories que ha de tenir el menú.
@@ -390,8 +472,92 @@ public class Cuina {
      - Un cop afegits els plats al menú, l'aplicació finalitzarà.
      Retorn: cap
      */
-    public void afegeixPlatsMenuRegim() {
+    public void afegeixPlatsMenuRegim(int calories) {
+        double caloriesTotal = 0;
+        boolean receptaAfegida = false;
 
+        //plat 1
+        for (int i = 0; i < posicioReceptes && receptes[i].getTipus().equals("1")
+                && receptes[i].getAssignada() == false && receptaAfegida == false; i++) {
+
+            if (receptes[i].getCalories() < calories) {
+                boolean alimentValid = true;
+
+                for (int j = 0; j < posicioAliments && alimentValid == true; j++) {
+                    int pos = seleccionarAliment(receptes[i].getIngredients()[j].getCodi());
+
+                    if (pos > -1) {
+                        if (aliments[j].getQuantitat() < receptes[i].getIngredients()[j].getQuantitat()) {
+                            alimentValid = false;
+                        }
+
+                    }
+                }
+                if (alimentValid == true) {
+                    menusRegim[posicioMenusRegim - 1].afegirPlat(receptes[i]);
+                    receptaAfegida = true;
+                    caloriesTotal = +receptes[i].getCalories();
+                }
+            }
+        }
+        //Plat 2
+        if (caloriesTotal < calories) {
+            
+            receptaAfegida = false;
+            
+            for (int i = 0; i < posicioReceptes && receptes[i].getTipus().equals("2")
+                    && receptes[i].getAssignada() == false && receptaAfegida == false; i++) {
+
+                if ((receptes[i].getCalories() + caloriesTotal) < calories) {
+                    boolean alimentValid = true;
+
+                    for (int j = 0; j < posicioAliments && alimentValid == true; j++) {
+                        int pos = seleccionarAliment(receptes[i].getIngredients()[j].getCodi());
+
+                        if (pos > -1) {
+                            if (aliments[j].getQuantitat() < receptes[i].getIngredients()[j].getQuantitat()) {
+                                alimentValid = false;
+                            }
+
+                        }
+                    }
+                    if (alimentValid == true) {
+                        menusRegim[posicioMenusRegim - 1].afegirPlat(receptes[i]);
+                        receptaAfegida = true;
+                        caloriesTotal = +receptes[i].getCalories();
+                    }
+                }
+            }
+        }
+        //Postres
+        if (caloriesTotal < calories) {
+            
+            receptaAfegida = false;
+            
+            for (int i = 0; i < posicioReceptes && receptes[i].getTipus().equals("P")
+                    && receptes[i].getAssignada() == false && receptaAfegida == false; i++) {
+
+                if ((receptes[i].getCalories() + caloriesTotal) < calories) {
+                    boolean alimentValid = true;
+
+                    for (int j = 0; j < posicioAliments && alimentValid == true; j++) {
+                        int pos = seleccionarAliment(receptes[i].getIngredients()[j].getCodi());
+
+                        if (pos > -1) {
+                            if (aliments[j].getQuantitat() < receptes[i].getIngredients()[j].getQuantitat()) {
+                                alimentValid = false;
+                            }
+
+                        }
+                    }
+                    if (alimentValid == true) {
+                        menusRegim[posicioMenusRegim - 1].afegirPlat(receptes[i]);
+                        receptaAfegida = true;
+                        caloriesTotal = +receptes[i].getCalories();
+                    }
+                }
+            }
+        }
     }
 
 }
