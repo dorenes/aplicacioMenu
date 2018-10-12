@@ -274,7 +274,10 @@ public class Aplicacio {
     public static void menuMenusOrdinaris() {
 
         int opcio = 0, pos;
-        Recepta rec;
+        String resposta = "";
+        String resposta2 = "";
+        String resposta3 = "";
+        boolean plat[] = new boolean[3];
         System.out.println("Escull una opcio: ");
         opcio = DADES.nextInt();
         while (opcio != 0) {
@@ -289,10 +292,33 @@ public class Aplicacio {
                     menuPrincipal();
                     break;
                 case 1:
-                    rec = Recepta.novaRecepta();
-                    pos = cuinaActual.seleccionarMenuOrdinari();
+                    System.out.println("Vols primer plat? SI(S) - NO(N)");
+                    resposta = DADES.next();
+
+                    if (resposta == "S") {
+                        plat[0] = true;
+                    } else {
+                        plat[0] = false;
+                    }
+
+                    System.out.println("Vols segon plat? SI(S) - NO(N)");
+                    resposta2 = DADES.next();
+                    if (resposta2 == "S") {
+                        plat[1] = true;
+                    } else {
+                        plat[1] = false;
+                    }
+
+                    System.out.println("Vols postre? SI(S) - NO(N)");
+                    resposta3 = DADES.next();
+                    if (resposta3 == "S") {
+                        plat[2] = true;
+                    } else {
+                        plat[2] = false;
+                    }
+
                     cuinaActual.afegirMenuOrdinari(); //Hem creat el nou objecte de MenuOrdinari();
-                    cuinaActual.getMenuOrdinari()[pos].afegirPlat(rec); //obtenim la posicio del menu ordinari i li afegim els plats nous.
+                    cuinaActual.afegeixPlatsMenuOrdinari(plat); //obtenim la posicio del menu ordinari i li afegim els plats nous.
                     break;
                 case 2:
                     pos = cuinaActual.seleccionarMenuOrdinari();
@@ -326,8 +352,7 @@ public class Aplicacio {
      */
     public static void menuMenusRegim() {
 
-        int opcio = 0, pos;
-        Recepta rec;
+        int opcio = 0, pos, cal;
 
         System.out.println("Escull una opcio: ");
         opcio = DADES.nextInt();
@@ -343,10 +368,10 @@ public class Aplicacio {
                     menuPrincipal();
                     break;
                 case 1:
-                    rec = Recepta.novaRecepta();
-                    pos = cuinaActual.seleccionarMenuRegim();
+                    System.out.println("Introdueix les calories maximes desitjades per al menú: ");
+                    cal = DADES.nextInt();
                     cuinaActual.afegirMenuRegim(); //Hem creat el nou objecte de MenuRegim();
-                    cuinaActual.getMenuRegim()[pos].afegirPlat(rec); //obtenim la posicio del menu de regim i li afegim els plats nous.
+                    cuinaActual.afegeixPlatsMenuRegim(cal); //obtenim la posicio del menu de regim i li afegim els plats nous.
                     break;
                 case 2:
                     pos = cuinaActual.seleccionarMenuRegim();
